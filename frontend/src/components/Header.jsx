@@ -19,11 +19,11 @@ const Header = () => {
                         <div className="relative">
                             <Input
                                 placeholder="Search"
-                                className="text-black pr-10 tracking-wider font-cantarell w-64 rounded-lg text-sm"
+                                className="opacity-40 text-black pr-10 tracking-wider font-cantarell w-64 rounded-lg text-sm"
                                 type="text"
                                 required
                             />
-                            <IoIosSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                            <IoIosSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-900" />
                         </div>
 
                         <div>

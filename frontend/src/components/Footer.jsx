@@ -12,7 +12,6 @@ const Footer = () => {
                 <div className="text-white text-center mt-4">
                     <p className="font-bold text-lg mb-2">Contact Us</p>
                 </div>
-
                 {/* Social Media Section */}
                 <div className="flex space-x-6 justify-center md:justify-start items-start">
                     <a href="mailto:example@gmail.com" aria-label="Email">
@@ -33,7 +32,6 @@ const Footer = () => {
                 <div className="text-white text-center mt-4">
                     <p className="text-sm">© 2021 All rights reserved.</p>
                 </div>
-
             </div>
         </footer>
     );

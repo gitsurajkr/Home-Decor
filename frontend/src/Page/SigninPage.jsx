@@ -2,13 +2,10 @@ import React from "react";
 import {
     Card,
     CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FaGoogle } from "react-icons/fa";
 import Google from "@/assets/google.png";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -32,12 +29,16 @@ const SigninPage = () => {
                                     type="email"
                                     required
                                 />
-                                <Input
-                                    placeholder="Password"
-                                    className="tracking-wider font-cantarell w-full rounded-none text-sm"
-                                    type="password"
-                                    required
-                                />
+                                <div className="">
+                                    <Input
+                                        placeholder="Password"
+                                        className="tracking-wider font-cantarell w-full rounded-none text-sm"
+                                        type="password"
+
+                                        required
+                                    />
+                                    <p className="pt-2 text-sm text-navyBlue hover:text-black cursor-pointer ">Forget Password?</p>
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <Button className="w-full bg-navyBlue hover:bg-gray-800 text-silver rounded-none font-cantarell tracking-wider">
@@ -45,7 +46,7 @@ const SigninPage = () => {
                                 </Button>
                                 <p className="text-sm text-center text-navyBlue">
                                     Don't have an account?{" "}
-                                    <a href="#" className="text-navyBlue underline">
+                                    <a href="#" className="text-navyBlue underline hover:text-black">
                                         Create one
                                     </a>
                                 </p>
