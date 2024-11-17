@@ -9,6 +9,8 @@ export default {
   	extend: {
 		fontFamily: {
 			cantarell: ['Cantarell', 'sans-serif'],
+			Italiana: ['Italiana', 'serif'],
+			JimNightshade: ['Jim Nightshade', 'cursive'],
 		  },
 
   		borderRadius: {
@@ -20,6 +22,9 @@ export default {
 			silver: '#BDB09D',
 			navyBlue: "#2E394B",
 			headerColour:  "#EBE9E6",
+			textColour: '#EBE9E6B2',
+			CardSet: "#866133",
+
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
