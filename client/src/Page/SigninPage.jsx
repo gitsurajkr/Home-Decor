@@ -35,7 +35,7 @@ const SigninPage = () => {
             if (response.status === 200) {
                 Cookies.set("token", response.data.token);
                 alert("Signin Successful");
-                navigate("/dashboard");
+                navigate("/home");
             }
         } catch (error) {
             console.error("Signin error:", error.response?.data || error.message);

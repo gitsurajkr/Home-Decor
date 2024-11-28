@@ -7,6 +7,7 @@ export default {
   ],
   theme: {
   	extend: {
+		
 		fontFamily: {
 			cantarell: ['Cantarell', 'sans-serif'],
 			Italiana: ['Italiana', 'serif'],
