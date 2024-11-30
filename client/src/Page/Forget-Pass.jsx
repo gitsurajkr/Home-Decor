@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import { ThreeDot } from 'react-loading-indicators';
+import toast from 'react-hot-toast';
 
 const ResetPassword = () => {
     const [step, setStep] = useState(1);
@@ -32,7 +33,12 @@ const ResetPassword = () => {
 
             if (response.status === 200) {
                 setIsSubmitted(true);
-                window.alert('Password reset link sent successfully.');
+                // window.alert('Password reset link sent successfully.');
+                toast.success('Password reset link sent successfully!', {
+                    position: 'top-right',
+                    duration: 3000,
+                    hideProgressBar: true,
+                });
             }
         } catch (error) {
             console.error('Password reset request error:', error);

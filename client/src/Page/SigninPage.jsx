@@ -9,6 +9,7 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const SigninPage = () => {
     const [emailOrPhone, setEmailOrPhone] = useState(""); // Handles both email and phone number
@@ -34,12 +35,21 @@ const SigninPage = () => {
 
             if (response.status === 200) {
                 Cookies.set("token", response.data.token);
-                alert("Signin Successful");
+                toast.success("Signin Successful",{
+                    position: "top-right",
+                    duration: 3000,
+                    hideProgressBar: true,  
+                });
                 navigate("/home");
             }
         } catch (error) {
             console.error("Signin error:", error.response?.data || error.message);
-            alert("Signin Failed. Please try again.");
+            // alert("Signin Failed. Please try again.");
+            toast.error("Signin Failed. Please try again!!",{
+                position: "top-right",
+                duration: 3000,
+                hideProgressBar: true,  
+            });
         }
 
     };

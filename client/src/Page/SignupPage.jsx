@@ -9,6 +9,7 @@ import Google from "@/assets/google.png";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -41,11 +42,23 @@ const SignupPage = () => {
     const validatePassword = () => {
         const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*\d).{6,}$/;
         if (!passwordRegex.test(password)) {
-            alert("Password must contain at least one special character and one digit.");
+            // alert("Password must contain at least one special character and one digit.");
+            toast.error("Password must contain at least one special character and one digit.", {
+                position: "top-right",
+                duration: 3000,
+                hideProgressBar: true,
+            });
+
             return false;
         }
         if (password !== confirmPassword) {
-            alert("Passwords do not match.");
+            // alert("Passwords do not match.");
+            toast.error("Passwords do not match.", {
+                position: "top-right",
+                duration: 3000,
+                hideProgressBar: true,
+            });
+
             return false;
         }
         return true;
@@ -70,7 +83,13 @@ const SignupPage = () => {
         if (!validatePassword()) return;
 
         if (phoneNumberError) {
-            alert("Please fix the errors in the form.");
+            // alert("Please fix the errors in the form.");
+            toast.error("Please fix the errors in the form.", {
+                position: "top-right",
+                duration: 3000,
+                hideProgressBar: true,
+            });
+
             return;
         }
 
@@ -86,12 +105,22 @@ const SignupPage = () => {
 
             if (response.status === 200) {
                 Cookies.set("token", response.data.token);
-                alert("Signup Successful");
+                // alert("Signup Successful");
+                toast.success("Signup Successful", {
+                    position: "top-right",
+                    duration: 3000,
+                    hideProgressBar: true,
+                });
                 navigate("/signin");
             }
         } catch (error) {
             console.error("Signup error:", error.response?.data || error.message);
-            alert("Signup Failed. Please try again.");
+            // alert("Signup Failed. Please try again.");
+            toast.error("Signup Failed. Please try again.", {
+                position: "top-right",
+                duration: 3000,
+                hideProgressBar: true,
+            });
         }
     };
 

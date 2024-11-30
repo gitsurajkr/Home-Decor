@@ -1,4 +1,5 @@
 import './App.css'
+import { Toaster } from "react-hot-toast";
 import SigninPage from './Page/SigninPage'
 import SignupPage from './Page/SignupPage'
 import LandingPage from './Page/LandingPage'
@@ -8,7 +9,8 @@ import Changepassword from './Page/Change-Password'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 function App() {
   return (
-    <BrowserRouter>    
+    <BrowserRouter>   
+     <Toaster />
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/home' element={<LandingPage />} />
