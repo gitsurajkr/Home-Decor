@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const zod = require('zod');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const { getDataFromToken } = require('../helpers/getDataFromToken');
 
 const SignupBodyValidation = zod
     .object({
@@ -107,12 +108,27 @@ const UserSignIn = async (req, res) => {
             return res.status(400).json({ message: "Invalid credentials" });
         }
 
-        const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        // Create JWT payload
+        const tokenData = {
+            userId: user._id,
+            userData: user
+        };
 
-        return res.status(200).json({ message: "User signed in successfully", token });
+        const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: "1d" });
+        res.cookie("token", token, {
+            maxAge: 24 * 60 * 60 * 1000,
+        });
+        return res.status(200).json({
+            success: true,
+            message: "User signed in successfully",
+            token
+        });
     } catch (error) {
         console.error("SignIn Error:", error);
-        return res.status(500).json({ message: "An error occurred during sign-in. Please try again later." });
+        return res.status(500).json({
+            success: false,
+            message: "An error occurred during sign-in. Please try again later."
+        });
     }
 };
 
@@ -187,7 +203,7 @@ const userForgetPassword = async (req, res) => {
 const passwordResetUpdate = async (req, res) => {
     const { userId } = req.params;
 
-    const  newPassword  = req.body.password || req.body.newPassword;
+    const newPassword = req.body.password || req.body.newPassword;
 
     const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*\d).{6,}$/; // Same regex as frontend
     if (!newPassword || !passwordRegex.test(newPassword)) {
@@ -195,13 +211,13 @@ const passwordResetUpdate = async (req, res) => {
             message: "Password must be at least 6 characters long and contain at least one special character and one digit.",
         });
     }
-    
+
 
     try {
 
         const user = await User.findById(userId);
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({
                 message: "User not found"
             })
@@ -227,11 +243,31 @@ const passwordResetUpdate = async (req, res) => {
 
 // }
 
+const getUser = async (req, res) => {
+    try {
+        const userId = await getDataFromToken(req);
+        const user = await User.findOne({ _id: userId }).select("-password");
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        return res.status(200).json({
+            message: "User found",
+            data: user,
+        });
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+}
+
+
 module.exports = {
     UserSignUp,
     UserSignIn,
     userSignOut,
     userForgetPassword,
-    passwordResetUpdate
+    passwordResetUpdate,
+    getUser
 };
 
