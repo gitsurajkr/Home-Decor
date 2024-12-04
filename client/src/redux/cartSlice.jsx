@@ -28,9 +28,7 @@ const cartSlice = createSlice({
                 state.cartItems.splice(itemIndex, 1);
             }
         },
-        // removeItemFromCart: (state, action) => {
-        //     state.cartItems = state.cartItems.filter(item => item.id !== action.payload.id);
-        // },
+        
         updateItemQuantity: (state, action) => {
             const itemIndex = state.cartItems.findIndex(item => item.id === action.payload.id);
             if (itemIndex !== -1) {
@@ -55,7 +53,6 @@ const cartSlice = createSlice({
         },
 
         applyCoupon: (state, action) => {
-            // Corrected the toLowerCase() function invocation
             if (action.payload.toLowerCase() === 'discount10') {
                 state.appliedCoupon = action.payload;
             }
@@ -64,9 +61,10 @@ const cartSlice = createSlice({
         setShippingMethod: (state, action) => {
             state.shippingMethod = action.payload;
         },
-        setPaymentMethod: (state, action) => {  // Corrected the typo in setPaymentMethod
+        setPaymentMethod: (state, action) => {  
             state.paymentMethod = action.payload;
-        }
+        },
+        
     }
 });
 
