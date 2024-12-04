@@ -51,7 +51,6 @@ const SigninPage = () => {
                 hideProgressBar: true,  
             });
         }
-
     };
 
     return (
