@@ -10,6 +10,7 @@ import LandingPage from "./Page/LandingPage";
 import ProductPage from "./Page/ProductPage";
 import ForgetPass from "./Page/Forget-Pass";
 import Changepassword from "./Page/Change-Password";
+import CartPage from "./Page/CartPage";
 import { Routes, Route } from "react-router-dom";
 import { setMeData } from "./redux/userSlice";
 import { getCookie } from "cookies-next";
@@ -55,6 +56,7 @@ function App() {
         <Route path="/reset-password" element={<ForgetPass />} />
         <Route path="/update-password/:userId" element={<Changepassword />} />
         <Route path="/product-page" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />}/>
       </Routes>
     </>
   );

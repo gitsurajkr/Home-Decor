@@ -2,8 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const router = require('./routes/index');
+const connectDB = require("./src/config/db")
+const router = require("./src/routes/index")
 
 // Load environment variables
 dotenv.config();
