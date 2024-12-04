@@ -58,12 +58,10 @@ const SignupPage = () => {
                 duration: 3000,
                 hideProgressBar: true,
             });
-
             return false;
         }
         return true;
     };
-
     // Input handlers
     const phoneNumberHandler = (e) => {
         const input = e.target.value;
@@ -257,3 +255,5 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+
